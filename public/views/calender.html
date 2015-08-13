@@ -1,0 +1,59 @@
+<div class="container-fluid">
+	
+	<div class="row" style="margin-bottom: 10px;">
+	
+	
+	<div class="box box-default no-padding">
+		<div class="box-header with-border"><h3 class="box-title">Events Calender</h3></div>
+	<div class="box-body">
+			
+			
+		<div class="container-fluid">
+			<div class="row">
+				
+				<div ng-class="cal.width">
+					<div class="calendar" calendar="eventCalendar" ng-model="cal.eventSources" ui-calendar="cal.uiConfig.calendar" ></div>
+				</div>
+				
+				
+				<div ng-if="cal.isVisible" class="col-md-3">
+					<div ng-repeat="event in cal.events | filter: {_id : cal.selectedId}">
+						<div style="padding:2px; border: 1px solid rgba(0,0,0,0.1);"><img ng-src="{{event.poster}}" class="img-responsive center-block" alt="Responsive image"></div>
+						<div class="text-center" style="padding-left:2px; padding-right: 2px;">
+							<h3 style="font-weight: 800">{{event.title}}</h3>
+							<h4 style="color: rgba(0,0,0,0.4);font-weight: 800; margin-bottom: 0px;">{{event.episodeName === "TBA" ? "To Be Announced" : event.episodeName}}</h4>
+							<h5 style="color: rgba(0,0,0,0.4); margin-top: 0px;">Season {{event.season}} Episode {{event.episodeNumber}}</h5>
+							<p style="font-size: 16px;">at <span style="font-weight: 800">{{event.showAirsTime}}</span> on <span style="font-weight: 800">{{event.network}}</span></p>
+							<p>{{event.overview}}</p>
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							<button ng-click="cal.toggle()" class="btn btn-default btn-block">Close</button>
+						</div>
+						
+					</div>
+					
+				</div>
+				
+			</div>
+	
+		</div>
+		
+	</div>
+	
+	<div class="box-footer"></div>
+	
+	</div>
+</div>
+	
+</div>

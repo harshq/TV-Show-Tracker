@@ -1,0 +1,182 @@
+<div class="container-fluid">
+	
+	<div class="row" style="margin-bottom: 10px;">
+		
+		<div class="col-md-4">
+				
+		<div class="box box-default no-padding">
+			<div class="box-header">
+				<img ng-src="{{detailCtrl.selectedShow.poster}}" class="img-responsive center-block" alt="Responsive image">
+				
+				<button ng-click="detailCtrl.subscribe(detailCtrl.selectedShow._id,detailCtrl.selectedShow.name, home.user._id, home.user.subscribed)" ng-class="{'disabled' : detailCtrl.selectedShow.status === 'Ended'}" ng-if="!detailCtrl.isSubscribed(detailCtrl.selectedShow._id, home.user.subscribed)" type="button" style="margin-top: 5px; font-size: 16px; font-weight: 800;" class="btn btn-success btn-md btn-block"><span ng-hide="detailCtrl.selectedShow.status === 'Ended'">Subscribe</span><span ng-show="detailCtrl.selectedShow.status === 'Ended'">Ended</span></button>
+				
+				<button ng-click="detailCtrl.unsubscribe(detailCtrl.selectedShow._id,detailCtrl.selectedShow.name, home.user._id, home.user.subscribed)" ng-class="{'disabled' : detailCtrl.selectedShow.status === 'Ended'}" ng-if="detailCtrl.isSubscribed(detailCtrl.selectedShow._id, home.user.subscribed)" type="button" style="margin-top: 5px; font-size: 16px; font-weight: 800;" class="btn btn-default btn-md btn-block"><span ng-hide="detailCtrl.selectedShow.status === 'Ended'">Unsubscribe</span><span ng-show="detailCtrl.selectedShow.status === 'Ended'">Ended</span></button>
+			</div>
+			
+		</div>
+			
+			
+		<div class="box box-default">
+				<div class="box-header with-border" style="background: url(images/4.png) no-repeat; background-position: 10px 25px; padding-left: 50px;"><h3>Cast</h3></div>
+				<div class="box-body">
+			
+				<table class="table table-hover table-condensed">
+                  <tbody>
+                    <tr ng-repeat="actor in detailCtrl.selectedShow.actors | limitTo:5">
+                      <td><p style="font-weight: 800;">{{actor.Name}}</p></td>
+						<td>
+							<p>as {{actor.Role}}</p>
+						</td>
+					</tr>
+                  </tbody>
+				</table>
+			
+			
+			
+				</div>
+			</div>
+			
+			
+			
+		</div>
+		<div class="col-md-8">
+			
+			<div class="box box-default">
+				<div class="box-header with-border">
+					<h1 style="font-weight: 800;">{{detailCtrl.selectedShow.name}}<small> - {{detailCtrl.selectedShow.firstAired | limitTo:4}}</small></h1>
+					<span style="margin-right: 5px;" ng-repeat="genre in detailCtrl.selectedShow.genre" class="label label-success">{{genre}}</span>
+			  	</div>
+				
+			  	<div class="box-body">
+					<table class="table table-hover table-condensed">
+                    <tbody>
+                    <tr>
+                      <td style="display: inline-block; background: url('images/1.png') no-repeat; background-position: 23px 5px; height: 40px; width:80px;"></td>
+						<td><p><span ng-if="detailCtrl.selectedShow.airsDayOfWeek" style="font-weight: 800; font-size: 16px;">{{detailCtrl.selectedShow.airsDayOfWeek}}</span><span ng-if="detailCtrl.selectedShow.airsDayOfWeek"> at </span><span style="font-weight: 800; font-size: 16px;">{{detailCtrl.selectedShow.airsTime}}</span><span ng-show="!detailCtrl.selectedShow.airsDayOfWeek" style="font-weight: 800; font-size: 16px;">Finished Airing!</span></p></td>
+                    </tr>
+					<tr>
+                      <td style="display: inline-block; background: url('images/2.png') no-repeat; background-position: 23px 5px; height: 40px; width:80px;"></td>
+						<td><p style="font-size: 16px;">On <span style="font-weight: 800;">{{detailCtrl.selectedShow.network}}</span> for <span style="font-weight: 800;">{{detailCtrl.selectedShow.runtime}}</span> minutes</p></td>
+                    </tr>
+                    <tr>
+                      <td style="display: inline-block; background: url('images/6.png') no-repeat; background-position: 23px 5px; height: 40px; width:80px;"></td>
+						<td><p style="font-size: 16px;"><span style="font-weight: 800;">{{detailCtrl.selectedShow.contentRating}}</span> Parental rating</p></td>
+                    </tr>
+					<tr>
+                      <td style="display: inline-block; background: url('images/7.png') no-repeat; background-position: 23px 5px; height: 40px; width:80px;"></td>
+						<td>
+							<span class="fa fa-star" ng-repeat="i in detailCtrl.stars(detailCtrl.selectedShow.rating).fullStars() track by $index"></span>
+							<span class="fa fa-star-half" ng-repeat="i in detailCtrl.stars(detailCtrl.selectedShow.rating).halfStars() track by $index"></span>
+						</td>
+						
+						
+						
+                    </tr>
+                    
+                    <tr>
+						<td><p style="font-weight: 800; font-size: 16px;">Overview</p></td>
+                      <td><p style="font-size: 16px;">{{detailCtrl.selectedShow.overview}}</p></td>
+                    </tr>
+                  </tbody></table>
+			  	</div>
+				
+			  	<div class="box-footer">
+
+			  	</div>
+
+			</div>
+			
+			<div class="box box-default">
+				<div class="box-header with-border" style="background: url(images/5.png) no-repeat; background-position: 10px 25px; padding-left: 50px;"><h3>Episodes</h3></div>
+				
+				<div class="box-body text-center">
+				
+				
+				<div class="btn-group" style="margin-bottom: 20px;" role="group">
+				  <button ng-class="{active: detailCtrl.selectedSeason === season}" ng-repeat="season in detailCtrl.seasonCount()" ng-click="detailCtrl.selectedSeason = season" type="button" class="btn btn-default">
+					  <span ng-hide="!!season">Pre Cut </span>
+					  <span ng-hide="!season">Season {{season}}</span>
+					  
+				  </button>
+				</div>
+					
+					
+					
+				<div class="box-group" id="accordion">
+                   
+                    <div ng-repeat="episode in detailCtrl.selectedShow.episodes | filter:{season: detailCtrl.selectedSeason }" class="panel box box-default">
+                      <div class="box-header with-border">
+						  
+						  <span class="label label-danger pull-right" style="margin-left: 5px;">Episode {{episode.episodeNumber}}</span>
+						  <span class="label label-danger pull-right" >Season {{episode.season}}</span>
+                        <h4 class="box-title">
+                          <a data-toggle="collapse" data-parent="#accordion" data-target="{{'#'+episode._id}}" aria-expanded="true" class="">
+                            {{episode.episodeName}}
+                          </a>
+                        </h4>
+                      </div>
+                      <div ng-attr-id="{{episode._id}}" class="panel-collapse collapse" aria-expanded="true">
+						  
+                        <div style="text-align: left;" class="box-body">
+						  <p style="font-weight: 800; font-size: 16px;"><span class="fa fa-calendar"></span> {{episode.firstAired | limitTo: 10}}</p>
+                          <p>{{episode.overview}}</p>
+							
+							<div>
+								<div class="box-body"></div>
+								<div class="box-footer">
+									<a style="margin-right:5px;" ng-repeat="torrent in episode.torrent | limitTo: 4" class="btn btn-success" ng-href="{{torrent.link}}">Download {{torrent.format != '0' ? torrent.format : 'link' }}</a>
+								</div>
+							</div>
+							
+                        </div>
+                      </div>
+                    </div>
+                   
+                    
+                  </div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				</div>
+			</div>
+			
+		</div>
+	
+	</div>
+	
+	
+	
+
+    
+  
+    	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</div>

@@ -1,0 +1,28 @@
+
+.font-bold {
+font-weight: bold;
+}
+
+.space{
+    margin: 3px;
+} 
+
+.dark-background{
+background: #1a2226!important;
+}
+
+.floater{
+    position: fixed;
+    width:300px;
+}
+
+.right{
+    right: 40px;
+}
+.top {
+	top: 90px;
+}
+
+.activeState{
+	background-color: rgba(0,0,0,0.1);
+}

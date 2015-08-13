@@ -1,0 +1,46 @@
+
+  <div class="container-fluid">
+      
+<div class="box box-default">
+    
+  <div class="box-header with-border">
+    <h3 class="box-title">{{main.headingTitle + ' '}}<a ng-click="main.reset()" style="text-decoration:none;" ng-show="main.headingTitle !== 'Top TV Shows'" class="fa fa-times"></a></h3><div class="pull-right"><input type="text" ng-model="main.search" class="form-control" style="width:220px; height:25px; padding: 0px; border:none;" placeholder="Search ..."></div>
+  </div>
+	
+	<div class="box-body">
+		<div class="center-block" style="max-width: 890px;" >
+        <button style="background: #f7f7f7; border: 1px solid #ebebeb; " class="btn btn-default btn-xs space" ng-click="main.filterByGenre(genre)" ng-repeat="genre in main.genres | orderBy: +genre"><span style="font-size: 12px;">{{genre}}</span></button>
+	  </div>
+	</div>
+	
+</div>
+	  
+      
+    <div class="row">
+		
+		
+       	<div style="margin-bottom: 10px;" class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="show in main.shows | filter: {name : main.search}">
+			
+			<div style="background:#ffffff; box-shadow: 0 1px 1px rgba(0,0,0,0.1); border-radius: 3px; padding:5px;">
+				<a href="/details" ng-click="main.selectShow(show)"><img ng-src="{{show.fanart}}" class="img-responsive center-block" alt="Responsive image"></a>
+				<p style="font-size: 16px; margin-top: 10px; padding-bottom:0px; margin-bottom:0px; font-weight: 800;" class="text-center">{{show.name}}</p>
+				<p style="font-size: 12px; padding:0px; margin:0px;" class="text-center">{{show.subscribers.length}} Subscribers</p>
+				
+				<button ng-hide="main.isSubscribed(show._id, home.user.subscribed)" ng-click="main.subscribe(show._id, show.name, home.user._id,home.user.subscribed)" ng-class="{'disabled' : show.status === 'Ended'}" type="button" style="margin-top: 5px; font-size: 16px; font-weight: 800;" class="btn btn-danger btn-md btn-block"><span ng-hide="show.status === 'Ended'">Subscribe</span><span ng-show="show.status === 'Ended'">Ended</span></button>
+				
+				<button ng-show="main.isSubscribed(show._id, home.user.subscribed)" ng-click="main.unsubscribe(show._id, show.name, home.user._id,home.user.subscribed)" ng-class="{'disabled' : show.status === 'Ended'}" type="button" style="margin-top: 5px; font-size: 16px; font-weight: 800;" class="btn btn-default btn-md btn-block"><span ng-hide="show.status === 'Ended'">Unsubscribe</span><span ng-show="show.status === 'Ended'">Ended</span></button>
+				
+			</div>
+			
+		</div>
+		
+		
+		
+    </div>
+      
+      
+      
+      
+  </div>
+
+

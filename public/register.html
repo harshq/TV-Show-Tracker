@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html ng-app="RegisterApp">
+
+  <head>
+    <meta charset="utf-8" />
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RemindMe! | TV show tracker</title>
+    <base href="/" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/fontawesome/4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/Admin.min.css">
+    <link rel="stylesheet" href="stylesheets/skin-red.min.css">
+	<link rel="stylesheet" href="stylesheets/angular-motion.min.css">
+      
+
+    <link rel="stylesheet" href="stylesheets/style.css" />
+      
+  
+  </head>
+
+<body class="skin-red fixed dark-background" ng-controller="registerCtrl as register">
+
+<div class="wrapper dark-background">
+    
+   		 <header class="main-header">
+            <a href="/" class="logo">
+              <span class="logo-lg"><img src="images/logo.png"></span>
+            </a>
+            <nav class="navbar navbar-static-top" role="navigation">
+              <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">	
+                  <li style="font-size: 18px;"><a href="#"> Sign in <span class="sr-only">(current)</span></a></li>
+				  <li style="font-size: 18px;"><a class="activeState" href="#"> Register <span class="sr-only">(current)</span></a></li>
+                </ul>
+              </div>
+            </nav>
+          </header>
+
+
+
+
+
+<div class="register-box">
+      <div class="register-logo">
+         <a class="center-block" href="#" style="background: url(images/logo-big.png) no-repeat; height:49px; width: 235px; display: block;"></a>
+      </div>
+
+      <div class="register-box-body">
+        <p class="login-box-msg">Register a new membership</p>
+		  
+        <form ng-submit="register.newUser()" name="regForm" novalidate>
+          <div class="form-group has-feedback">
+            <input type="text" class="form-control" ng-model="register.firstName" ng-model-options="{ updateOn: 'blur' }" name="fname" placeholder="First Name" required>
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+			<span ng-show="regForm.fname.$dirty && regForm.fname.$invalid" style="font-size: 12px; color: red;">
+			  		<span ng-show="regForm.fname.$error.required">* Required</span>
+			  </span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="email" class="form-control" name="email" ng-model-options="{ updateOn: 'blur' }" ng-model="register.email" placeholder="Email" required>
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+			  <span ng-show="regForm.email.$dirty && regForm.email.$invalid" style="font-size: 12px; color: red;">
+			  		<span ng-show="regForm.email.$error.required">* Required</span>
+				  	<span ng-show="regForm.email.$error.email">* Invalid email</span>
+			  </span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="password" class="form-control" name="password" ng-model-options="{ updateOn: 'blur' }" ng-model="register.password" placeholder="Password" required>
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+			  <span ng-show=" regForm.password.$dirty && regForm.password.$invalid" style="font-size: 12px; color: red;">
+			  		<span ng-show="regForm.password.$error.required">* Required</span>
+			  </span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="password" class="form-control" name="passRepeat" ng-model-options="{ updateOn: 'blur' }" ng-model="register.passRepeat" placeholder="Retype password" required>
+            <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+			  <span ng-show="regForm.passRepeat.$dirty && regForm.passRepeat.$invalid" style="font-size: 12px; color: red;">
+			  		<span ng-show="regForm.passRepeat.$error.required">* Required</span>
+			  </span>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <button type="submit" class="btn btn-danger btn-block btn-flat" ng-disabled="regForm.fname.$invalid || regForm.email.$invalid || regForm.password.$invalid || regForm.passRepeat.$invalid">Register</button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+
+
+	
+</div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	
+    <script src="vendor/angular.min.js" ></script>
+	<script src="vendor/angular-strap.min.js"></script>
+	<script src="vendor/angular-strap.tpl.min.js"></script>
+	<script src="vendor/angular-resource.min.js"></script>
+	<script src="vendor/angular-animate.js"></script>
+
+	
+   
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.6/jquery.slimscroll.min.js" ></script>
+
+
+	<script>
+	var app = angular.module('RegisterApp', ['ngResource','mgcrea.ngStrap','ngAnimate'] );
+		
+	app.controller('registerCtrl', function(newUser, $alert){
+			var vm = this;
+			
+			vm.newUser = function() {
+				
+			if(vm.password === vm.passRepeat){	
+				
+				var user = newUser.save({firstName: vm.firstName ,email: vm.email ,createdOn: Date.now() ,password: vm.password });
+
+				user.$promise.then(function(){
+					 $alert({title: "Success! ",content: "Welcome to RemindMe "+ vm.firstName + " !",placement: 'floater top right am-flip-x',duration: '3',type: "success",show: true});
+				}, function(){
+					$alert({title: "Oops! ",content: "Looks like your email is already registerd! ",placement: 'floater top right am-flip-x',duration: '3',type: "danger",show: true});
+				});
+				
+			}else{
+				$alert({title: "Oops! ",content: "Your passwords doesnt match! ",placement: 'floater top right am-flip-x',duration: '3',type: "danger",show: true});
+				}
+			}
+			}
+
+		);
+	</script>
+	<script src="services/newUser.js"></script>
+	
+    
+</body>
+</html>

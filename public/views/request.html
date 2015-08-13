@@ -1,0 +1,119 @@
+<div class="container-fluid">
+      
+	
+			
+			<div class="box box-default">
+                <div class="box-header with-border">
+                  <h3 class="box-title">{{request.title}}</h3>
+				</div>
+				
+                 <div ng-hide="!!request.show" class="box-body">
+                    
+					<div class="form-group">
+                      <input type="text" class="form-control input-lg" id="showName" ng-model="request.searchText" placeholder="Tell us the show you need ...">
+						<button style="margin-top: 10px;" class="btn btn-block btn-success btn-lg" ng-click="request.search(request.searchText)">Search</button>
+                    </div>
+					
+                    
+                  </div>
+				
+                <div ng-show="!!request.show" class="box-footer">
+					<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-4">
+							<img ng-src="{{request.show.poster}}" class="img-responsive center-block" alt="Responsive image">
+						</div>
+						<div class="col-md-8">
+							
+							
+							
+							
+							
+							
+		<table class="table table-hover table-condensed">
+                    <tbody>
+					
+					<tr>
+                      <td colspan="2">
+						  
+						<h1 style="font-weight: 800;">{{request.show.SeriesName}}<small> - {{request.show.year}}</small></h1>
+					<span style="margin-right: 5px;" ng-repeat="genre in request.show.genres" class="label label-success">{{genre}}</span>
+						  
+					  </td>
+						
+                    </tr>
+					<tr>
+						<td colspan="2"></td>
+					</tr>
+						
+					<tr>
+                      <td style="display: inline-block; background: url('images/2.png') no-repeat; background-position: 23px 5px; height: 40px; width:80px;"></td>
+						<td><p style="font-size: 16px;">First Aired on <span style="font-weight: 800;">{{request.show.FirstAired}}</span></p></td>
+                    </tr>
+					
+					<tr>
+                      <td style="display: inline-block; background: url('images/1.png') no-repeat; background-position: 23px 5px; height: 40px; width:80px;"></td>
+						<td><p>in <span style="font-weight: 800; font-size: 16px;">{{request.show.Network}}</span></p></td>
+                    </tr>
+						
+					<tr>
+                      <td style="display: inline-block; background: url('images/2.png') no-repeat; background-position: 23px 5px; height: 40px; width:80px;"></td>
+						<td><p style="font-size: 16px;">For <span style="font-weight: 800;">{{request.show.runtime}}</span> minutes</p></td>
+                    </tr>
+						
+					
+						
+                    <tr>
+                      <td style="display: inline-block; background: url('images/6.png') no-repeat; background-position: 23px 5px; height: 40px; width:80px;"></td>
+						<td><p style="font-size: 16px;"><span style="font-weight: 800;">{{request.show.status}}</span></p></td>
+                    </tr>
+					
+                    
+                    <tr>
+						<td><p style="font-weight: 800; font-size: 16px;">Overview</p></td>
+                      <td><p style="font-size: 16px;">{{request.show.Overview}}</p></td>
+                    </tr>
+						
+					<tr>
+						<td colspan="2"></td>
+                    </tr>
+						<tr>
+						
+                      <td colspan="2"><button ng-click="request.select(request.show.id)" class="btn btn-success btn-block">Request this show</button><button class="btn btn-default btn-block" ng-click="request.cancel()">Cancel</button></td>
+                    </tr>
+			</tbody>
+								
+		</table>
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+						</div>
+					</div>
+					</div>
+					
+					
+                </div>
+								<div ng-show="request.loading" class="overlay"><i class="fa fa-refresh fa-spin"></i></div>
+              </div>
+			
+	
+
+</div>
