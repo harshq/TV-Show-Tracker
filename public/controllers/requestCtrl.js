@@ -36,8 +36,13 @@ var vm = this;
 	
 	};
 	
-	vm.select = function(showId){
-		console.log(showId);
+	vm.select = function(userId){
+		//console.log(userId);
+		vm.show.userId = userId;
+		Request.save(vm.show);
+		alertService.alert('Cheers! ','You will recieve an email if we managed to add it!','success');
+		vm.show = null;
+		vm.searchText = "";
 	
 	};
 	

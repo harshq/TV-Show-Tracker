@@ -11,7 +11,7 @@
                     
 					<div class="form-group">
                       <input type="text" class="form-control input-lg" id="showName" ng-model="request.searchText" placeholder="Tell us the show you need ...">
-						<button style="margin-top: 10px;" class="btn btn-block btn-success btn-lg" ng-click="request.search(request.searchText)">Search</button>
+						<button style="margin-top: 10px; background: #fcc21b; color:#2f2f2f; font-size: 16px; font-weight: 800;" class="btn btn-block btn-lg" ng-click="request.search(request.searchText)">Search</button>
                     </div>
 					
                     
@@ -80,7 +80,7 @@
                     </tr>
 						<tr>
 						
-                      <td colspan="2"><button ng-click="request.select(request.show.id)" class="btn btn-success btn-block">Request this show</button><button class="btn btn-default btn-block" ng-click="request.cancel()">Cancel</button></td>
+                      <td colspan="2"><button ng-click="request.select(home.user._id)" style="background: #fcc21b; color:#2f2f2f; font-size: 16px; font-weight: 800;" class="btn btn-block">Request this show</button><button class="btn btn-default btn-block" ng-click="request.cancel()">Cancel</button></td>
                     </tr>
 			</tbody>
 								

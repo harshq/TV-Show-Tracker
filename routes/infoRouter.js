@@ -8,7 +8,74 @@ var routes = function(ReqShow){
 
 var infoRouter = express.Router();
 
+	infoRouter.route('/')
+		.post(function(req,res){
+		
+			var userId = req.body.userId;
+			//console.log(req.body.SeriesName);
+		
+			ReqShow.findOne({name : req.body.SeriesName },function(err,data){
+				if(err){
+					res.send('err').status(500);
+				}else{
+					if(!data){
+						
+						var reqShow = new ReqShow({
+								tvdbId: req.body.seriesid,
+								name:req.body.SeriesName,
+								overview:req.body.Overview,
+								firstAired:req.body.FirstAired,
+								network:req.body.Network,
+								imdbId:req.body.IMDB_ID,
+								poster:req.body.poster,
+								status:req.body.status,
+								runtime:req.body.runtime,
+								genres:[],
+								reqested: []
+								});
 
+								req.body.genres.forEach(function(element,index, array){reqShow.genres.push(element);});
+								reqShow.reqested.push(userId);
+
+								reqShow.save(function(err){
+									if(err){
+										res.status(500).send(err);
+									}else{
+										res.status(201).send('new show requested');
+									}});
+						
+						//-----------------------------------------------------
+			
+							}else{
+							
+								data.reqested.push(userId);
+								data.save(function(err){
+									if(err){
+											res.status(500).send(err);
+									}else{
+											res.status(201).send('old show updated');
+									}});
+
+								//-------------------------------------------------------
+
+							}
+				}
+			});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		});
 	
     infoRouter.use('/:seriesName' , function(req,res, next){
 		var seriesName = req.params.seriesName;
