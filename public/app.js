@@ -40,6 +40,7 @@ app.config(['$routeProvider','$locationProvider','$compileProvider', function($r
 
 app.controller('homeController', function(Login, $window, $location,$rootScope,alertService,User){
 	var vm = this;
+	vm.isLoading = false;
 	vm.user = {}; 
 		
 	vm.signIn = function(){
