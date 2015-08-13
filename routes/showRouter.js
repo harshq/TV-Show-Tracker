@@ -50,6 +50,14 @@ var routes = function(Show){
 	});
 	
 
+	
+	
+	
+	
+	
+	
+	
+	
 	return userRouter;
 };
 

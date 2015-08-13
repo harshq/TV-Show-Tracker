@@ -15,13 +15,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 var Show = require('./models/showModel');
 var User = require('./models/userModel');
+var ReqShow = require('./models/requestModel');
 
 var userRouter = require('./routes/userRouter')(User);
 var showRouter = require('./routes/showRouter')(Show);
-var infoRouter = require('./routes/infoRouter')();
+var infoRouter = require('./routes/infoRouter')(ReqShow);
 var newShowRouter = require('./routes/newShowRouter')(Show);
 var subscribeRouter = require('./routes/subscribeRouter')(User,Show);
 var unsubscribeRouter = require('./routes/unsubscribeRouter')(User,Show);
+
 
 app.use('/users', userRouter);
 app.use('/shows', showRouter);

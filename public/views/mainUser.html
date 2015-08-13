@@ -26,7 +26,7 @@
 				<p style="font-size: 16px; margin-top: 10px; padding-bottom:0px; margin-bottom:0px; font-weight: 800;" class="text-center">{{show.name}}</p>
 				<p style="font-size: 12px; padding:0px; margin:0px;" class="text-center">{{show.subscribers.length}} Subscribers</p>
 				
-				<button ng-hide="main.isSubscribed(show._id, home.user.subscribed)" ng-click="main.subscribe(show._id, show.name, home.user._id,home.user.subscribed)" ng-class="{'disabled' : show.status === 'Ended'}" type="button" style="margin-top: 5px; font-size: 16px; font-weight: 800;" class="btn btn-danger btn-md btn-block"><span ng-hide="show.status === 'Ended'">Subscribe</span><span ng-show="show.status === 'Ended'">Ended</span></button>
+				<button ng-hide="main.isSubscribed(show._id, home.user.subscribed)" ng-click="main.subscribe(show._id, show.name, home.user._id,home.user.subscribed)" ng-class="{'disabled' : show.status === 'Ended'}" type="button" style="margin-top: 5px; font-size: 16px; font-weight: 800; background: #fcc21b; color:#2f2f2f;" class="btn btn-md btn-block"><span ng-hide="show.status === 'Ended'">Subscribe</span><span ng-show="show.status === 'Ended'">Ended</span></button>
 				
 				<button ng-show="main.isSubscribed(show._id, home.user.subscribed)" ng-click="main.unsubscribe(show._id, show.name, home.user._id,home.user.subscribed)" ng-class="{'disabled' : show.status === 'Ended'}" type="button" style="margin-top: 5px; font-size: 16px; font-weight: 800;" class="btn btn-default btn-md btn-block"><span ng-hide="show.status === 'Ended'">Unsubscribe</span><span ng-show="show.status === 'Ended'">Ended</span></button>
 				

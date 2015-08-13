@@ -4,7 +4,7 @@ var TVDB = require("node-tvdb/compat");
 var tvdb = new TVDB("B5D2874D61BF48DA");
 
 
-var routes = function(){
+var routes = function(ReqShow){
 
 var infoRouter = express.Router();
 
@@ -15,9 +15,11 @@ var infoRouter = express.Router();
 
 			tvdb.getSeriesByName(seriesName, function(err, response) {
     			if(err){
+					//console.log('err');
                     //req.shows = {status : 404};
     				//res.send("Show Not Found!").status(404);
     			}else{
+					//console.log(response);
     				req.shows = response;
                     next();
     			}
@@ -31,29 +33,50 @@ var infoRouter = express.Router();
 
             if(!!show.IMDB_ID){
 
-            //console.log(show.IMDB_ID);
+        
 
                 request('http://eztvapi.re/show/'+show.IMDB_ID, function (error, response, body) {
                   if (!error && response.statusCode == 200) {
                     
+					  
+					if(!!body){
                     var data = JSON.parse(body);
-                    //console.log(data.images.poster);
-                    show.poster = data.images.poster;
-                    show.status = data.status;
-                    show.runtime = data.runtime;
-                    show.year = data.year;
-                    show.genres = data.genres;
+						show.poster = data.images.poster;
+						show.status = data.status;
+						show.runtime = data.runtime;
+						show.year = data.year;
+						show.genres = data.genres;
 
-                    req.show = show;
-                    next();
+						req.show = show;
+						next();
+				  	}else{
+						show.status = "unavailable";
+						show.runtime = "0";
+						show.year = "unavailable";
+						show.genres = [];
+						show.poster = null;
+						req.show = show;
+						next();
+					}
+					  
+					  
+					  
 
                   }else{
-                    //console.log("No poster");
-                     show.poster = null;
-                     req.show = show;
-                     next();
+                    show.status = "unavailable";
+						show.runtime = "0";
+						show.year = "unavailable";
+						show.genres = [];
+						show.poster = null;
+						req.show = show;
+						next();
                   }
                 });
+				
+				
+				
+				
+				
 
             }else{
                 next();
