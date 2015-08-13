@@ -17,7 +17,7 @@
                     
                   </div>
 				
-                <div ng-show="!!request.show" class="box-footer">
+                <div ng-show="!!request.show" class="box-footer no-padding">
 					<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-4">
@@ -38,7 +38,7 @@
                       <td colspan="2">
 						  
 						<h1 style="font-weight: 800;">{{request.show.SeriesName}}<small> - {{request.show.year}}</small></h1>
-					<span style="margin-right: 5px;" ng-repeat="genre in request.show.genres track by $index" class="label label-success">{{genre}}</span>
+					<span style="margin-right: 5px;" ng-repeat="genre in request.show.genres | limitTo:4 " class="label label-success">{{genre}}</span>
 						  
 					  </td>
 						
