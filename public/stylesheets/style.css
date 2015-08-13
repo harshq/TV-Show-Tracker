@@ -26,3 +26,7 @@ background: #1a2226!important;
 .activeState{
 	background-color: rgba(0,0,0,0.1);
 }
+
+.height{
+	min-height: 100%!important;
+}
