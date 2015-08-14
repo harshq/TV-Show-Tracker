@@ -1,8 +1,8 @@
 var express = require('express');
 var path = require('path');
 var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-//mongoose.connect('mongodb://harshana:remindme++12@ds031203.mongolab.com:31203/remindme');
+//var bodyParser = require('body-parser');
+mongoose.connect('mongodb://harshana:remindme++12@ds031203.mongolab.com:31203/remindme');
 mongoose.connect('mongodb://localhost/remindme');
 
 var app = express();
