@@ -29,7 +29,7 @@
 										</tr><tr>
 										<td><div ng-hide="settings.edit"><span class="text16">{{home.user.email}}</span></div><div ng-show="settings.edit"><div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                    <input type="email" disabled ng-model="home.user.email" class="form-control" placeholder="Email">
+                    <input type="email" ng-model="settings.user.email" class="form-control" placeholder="Email">
                   </div></div></td>
 										</tr><tr>
 											<td><div ng-hide="settings.edit"><span class="text16">{{home.user.password |limitTo:1}}<span ng-repeat="char in home.user.password">*</span></span></div><div ng-show="settings.edit"><div class="input-group">

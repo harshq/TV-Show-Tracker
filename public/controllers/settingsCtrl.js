@@ -28,10 +28,7 @@ angular.module('MyApp')
 	
 	vm.save = function(){
 		vm.user.image = vm.imageStrings[vm.imageStrings.length - 1];
-		delete vm.user.email;
 		var changed = User.currentUser(vm.user);
-		
-		
 		for(i in vm.user){
 			vm.homeUser[i] = vm.user[i];
 		}
