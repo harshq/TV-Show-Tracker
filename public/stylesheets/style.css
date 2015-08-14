@@ -78,7 +78,7 @@ background: #1a2226!important;
   content: '';
 }
 .loader:after {
-  background: #0dc5c1;
+  background: #2f2f2f;
   width: 75%;
   height: 75%;
   border-radius: 50%;
