@@ -1,5 +1,5 @@
 angular.module('MyApp')
- 	.service('User', function($resource, alertService){
+ 	.service('User', function($resource, alertService,$q,$http){
 	this.loggedUser = {};
 	
 	this.currentUser = function(obj){
