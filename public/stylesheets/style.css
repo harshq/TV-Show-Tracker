@@ -30,3 +30,19 @@ background: #1a2226!important;
 .height{
 	min-height: 100%!important;
 }
+
+.bold
+{
+	font-weight: 800;
+}
+
+.text16{
+	font-size: 16px;
+}
+
+.border-dashed
+{
+	border: 2px #f1f1f1 dashed;
+	height: 100%;
+	width: 100%;
+}

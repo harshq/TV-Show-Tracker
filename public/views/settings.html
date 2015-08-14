@@ -1,1 +1,117 @@
-<div>This is the settings page</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-8">
+			<div class="box box-default no-padding">
+				<div class="box-header with-border"><h3 class="box-title">Account Settings</h3></div>
+				<div class="box-body">
+	
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-4">
+				
+					<img ng-hide="settings.edit" ng-src="{{home.user.image}}" class="center-block img-responsive col-xs-12" alt="User Image" />		
+					
+					<div ng-show="settings.edit" class="border-dashed" flow-init flow-name="uploader.flow" flow-files-added="settings.processFiles($files)">
+						<img ng-hide="!!$flow.files[$flow.files.length-1]" ng-src="{{home.user.image}}" class="center-block" alt="User Image" />	
+      							<img width="100%" class="preview" class="center-block img-responsive col-xs-12" flow-img="$flow.files[$flow.files.length - 1]"/>
+						<button class="btn btn-default btn-block" flow-btn type="file">Select an image</button>
+					</div>
+												
+							</div>
+							<div class="col-md-8">
+								<table class="table table-condensed">
+									<tbody>
+										<tr>
+											<td><div ng-hide="settings.edit"><h3 class="bold">{{home.user.firstName+' '+home.user.lastName}}</h3></div><div ng-show="settings.edit"><div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user-plus"></i></span>
+                    <input type="text" ng-model="settings.user.firstName" class="form-control" placeholder="First name"><input style="border-top:none;" type="text" ng-model="settings.user.lastName" class="form-control" placeholder="Last name">
+                  </div></div></td>
+										</tr><tr>
+										<td><div ng-hide="settings.edit"><span class="text16">{{home.user.email}}</span></div><div ng-show="settings.edit"><div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                    <input type="email" ng-model="settings.user.email" class="form-control" placeholder="Email">
+                  </div></div></td>
+										</tr><tr>
+											<td><div ng-hide="settings.edit"><span class="text16">{{home.user.password |limitTo:1}}<span ng-repeat="char in home.user.password">*</span></span></div><div ng-show="settings.edit"><div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="password" ng-model="settings.user.password" class="form-control" placeholder="Password">
+                  </div></div></td>
+										</tr><tr>
+<td>
+	<div ng-hide="settings.edit">
+	<span style="margin-right: 3px;" class="btn btn-xs btn-default text16" ng-repeat="genre in home.user.genre">{{genre}}</span>
+	</div>
+	<div ng-show="settings.edit">
+		<div class="input-group">
+        	<span class="input-group-addon"><i class="fa fa-plus"></i></span>
+             <input type="text" class="form-control" placeholder="type and press enter" ng-model="settings.newGenre" ng-enter="settings.addGenre(settings.newGenre)">
+			 <span ng-click="settings.removeGenre(genre)" style="margin-right: 3px;" class="btn btn-xs btn-default text16" ng-repeat="genre in settings.user.genre">{{genre+' '}}<i class="fa fa-times-circle-o"></i></span>
+        </div>
+	</div>
+</td>
+										
+										</tr>
+										<tr>
+											<td>
+												<div ng-hide="settings.edit"><span class="text16">Email noticifations are <span class="bold">{{home.user.notifications === 'true' ? 'ON!' : 'OFF!'}}</span>!</span></div><div ng-show="settings.edit">
+			<div class="input-group">
+        	<span class="input-group-addon"><i class="fa fa-bell"></i></span>
+             
+			 <select ng-model="settings.user.notifications" style="height: 28px; border:1px solid #ccc;">
+			  <option value="true">Yes, I need notifications</option>
+			  <option value="false">No, Stop notifications</option>
+			</select>
+        </div>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<button ng-hide="settings.edit" ng-click="settings.isEditable(home.user)" class="btn btn-success btn-block">Edit my info</button>
+												<div ng-show="settings.edit">
+													<button class="btn btn-success btn-block" ng-click="settings.save()">Save Changes</button>
+													<button class="btn btn-default btn-block" ng-click="settings.cancel()">Cancel</button>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+				</div>
+				<div class="box-footer"></div>
+			</div>
+		</div>
+		<div class="col-md-4">
+<!--			-->
+			<div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Subscribed shows</span>
+                  <span class="info-box-number">{{home.user.subscribed.length}}</span>
+                </div><!-- /.info-box-content -->
+              </div>
+<!--			-->
+			<div class="info-box">
+                <span class="info-box-icon bg-green"><i class="fa fa-cloud-download"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Downloads this month</span>
+                  <span class="info-box-number">8</span>
+                </div><!-- /.info-box-content -->
+              </div>
+<!--			-->
+			<div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="fa fa-calendar-o"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Member since</span>
+                  <span class="info-box-number">{{home.user.createdOn | limitTo: 10}}</span>
+                </div><!-- /.info-box-content -->
+              </div>
+<!--			-->
+		</div>
+	</div>
+</div>

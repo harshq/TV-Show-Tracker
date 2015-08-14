@@ -1,4 +1,4 @@
-var app = angular.module('MyApp', ['mgcrea.ngStrap','ngAnimate','ngCookies', 'ngResource', 'ngMessages', 'ngRoute','ui.calendar']);
+var app = angular.module('MyApp', ['mgcrea.ngStrap','ngAnimate','ngCookies', 'ngResource', 'ngMessages', 'ngRoute','ui.calendar','flow']);
 
 app.config(['$routeProvider','$locationProvider','$compileProvider', function($routeProvider,$locationProvider,$compileProvider){
 
@@ -24,7 +24,8 @@ app.config(['$routeProvider','$locationProvider','$compileProvider', function($r
 	  })
 	  .when('/settings', {
 	    templateUrl: 'views/settings.html',
-	    //controller: 'settingsCtrl'
+	    controller: 'settingsCtrl',
+		controllerAs: 'settings'
 	  })
 	  .when('/details', {
 	    templateUrl: 'views/details.html',

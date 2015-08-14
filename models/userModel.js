@@ -10,7 +10,8 @@ var userModel = new Schema({
 	createdOn:{type: Date},
 	genre:[String],
 	subscribed:[{type: mongoose.Schema.Types.ObjectId, ref: 'shows'}],
-	image:{type: String, default: 'None'}
+	image:{type: String, default: 'images/user2-160x160.png'},
+	notifications:{type: String, default: 'true'}
 });
 
 

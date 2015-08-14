@@ -115,8 +115,8 @@
 			vm.newUser = function() {
 				
 			if(vm.password === vm.passRepeat){	
-				
-				var user = newUser.save({firstName: vm.firstName ,email: vm.email ,createdOn: Date.now() ,password: vm.password });
+				var image = "images/user2-160x160.png";
+				var user = newUser.save({firstName: vm.firstName ,email: vm.email ,createdOn: Date.now() ,password: vm.password, image:image });
 
 				user.$promise.then(function(){
 					 $alert({title: "Success! ",content: "Welcome to RemindMe "+ vm.firstName + " !",placement: 'floater top right am-flip-x',duration: '3',type: "success",show: true});
