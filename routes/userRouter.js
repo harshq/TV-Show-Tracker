@@ -158,7 +158,7 @@ var routes = function(User){
 				res.status(404).send('User Not Found!');
 			}
 		})
-		.patch(function(req,res){
+		.post(function(req,res){
 			var data = req.body;
 			if(data._id){
 				delete data._id;
