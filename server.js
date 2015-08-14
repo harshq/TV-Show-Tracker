@@ -1,9 +1,9 @@
 var express = require('express');
 var path = require('path');
 var mongoose = require('mongoose');
-//var bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 mongoose.connect('mongodb://harshana:remindme++12@ds031203.mongolab.com:31203/remindme');
-mongoose.connect('mongodb://localhost/remindme');
+//mongoose.connect('mongodb://localhost/remindme');
 
 var app = express();
 var port = process.env.PORT || 3000;
