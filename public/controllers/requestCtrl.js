@@ -1,5 +1,5 @@
 angular.module('MyApp')
-	.controller('requestCtrl', function(Request, alertService){
+	.controller('requestCtrl', function(Request, alertService, Show, User, Detail){
 
 var vm = this;
 	
@@ -53,6 +53,37 @@ var vm = this;
 	
 	};
 	
+	
+	function shuffle(array) {
+	  var m = array.length, t, i;
+	  while (m) {
+		i = Math.floor(Math.random() * m--);
+		t = array[m];
+		array[m] = array[i];
+		array[i] = t;
+	  }
+	  return array;
+	}
+	
+	Show.query().$promise.then(function(shows){
+		vm.shuffledShows = shuffle(shows); //array	
+	});
+	
+	vm.selected = function(selectedShow){
+		Detail.selectedShow = selectedShow;
+	};
+	
+	var genres = User.loggedUser.genre; //array
+	vm.genre =  shuffle(genres)[0];
+	
+	vm.randomGenre = function(){
+		return { 'genre' : vm.genre };
+		
+	};
+	
+	
+//	console.log(vm.genres);
+//	console.log(vm.shuffledShows);
 	
 	
 

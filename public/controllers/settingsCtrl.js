@@ -32,7 +32,7 @@ angular.module('MyApp')
 		for(i in vm.user){
 			vm.homeUser[i] = vm.user[i];
 		}
-		console.log(vm.user);
+		//console.log(vm.user);
 		vm.edit = false;
 	};
 	
@@ -40,7 +40,7 @@ angular.module('MyApp')
 		
 		var index = vm.user.genre.indexOf(genre);
 		vm.user.genre.splice(index, 1);
-		console.log(vm.user.genre);
+		//console.log(vm.user.genre);
 	};
 	
 	vm.addGenre = function(newGenre){

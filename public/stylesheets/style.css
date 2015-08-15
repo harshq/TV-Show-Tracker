@@ -1,3 +1,7 @@
+a , a:hover{
+	text-decoration: none;
+	color: black;
+}
 
 .font-bold {
 font-weight: bold;
@@ -40,11 +44,39 @@ background: #1a2226!important;
 	font-size: 16px;
 }
 
+.text12{
+	font-size: 12px;
+}
+
+.top-margin5{
+	margin-top: 5px;
+}
+
+.top-margin10{
+	margin-top: 10px;
+}
+
+.bottom-margin10{
+	margin-bottom: 10px;
+}
+
+.yellow-background{
+	background: #fcc21b; 
+	color:#2f2f2f;
+}
+
 .border-dashed
 {
 	border: 2px #f1f1f1 dashed;
 	height: 100%;
 	width: 100%;
+}
+
+.displaybox-home{
+	background:#ffffff; 
+	box-shadow: 0 1px 1px rgba(0,0,0,0.1); 
+	border-radius: 3px; 
+	padding:5px;
 }
 
 .loader {
