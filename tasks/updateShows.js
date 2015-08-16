@@ -1,56 +1,22 @@
-var express = require('express');
 var request = require('request');
 var TVDB = require("node-tvdb/compat");
 var tvdb = new TVDB("B5D2874D61BF48DA");
+//var agenda = require('agenda')({ db: { address: 'mongodb://localhost/remindme' } });
+var agenda = require('agenda')({db: {  address: 'mongodb://harshana:remindme++12@ds031203.mongolab.com:31203/remindme'} });
 var async = require('async');
 
+var updateDatabase = function(Show){
 
-var routes = function(Show){
-	var userRouter = express.Router();
-    
-	userRouter.route('/')
-		.get(function(req,res){
-		
-		var query = req.query;
-			Show.find(query,function(err, data){
-				if(err){
-					res.status(500).send(err);
-				}else{
-					res.json(data).status(200);
-				}
-			});
-           
-		});
-    
-	userRouter.route('/:id')
-		.get(function(req,res){
-		
-		var id = req.params.id;
-		
-			Show.findById(id,function(err, data){
-				if(err){
-					res.status(500).send(err);
-				}else{
-					res.json(data).status(200);
-				}
-			});
-           
-		})
-		.delete(function(req,res){
+
+agenda.define('updateShowInfo', function(job, done) {
+	var data = job.attrs.data;
+	var id = data.id;
+  	console.log('Updating: '+id);
 	
-		var id = req.params.id;
-		
-			Show.findById(id,function(err, data){
-				if(err){
-					res.status(500).send(err);
-				}else{
-					data.remove();
-					res.send('Show Removed!').status(200);
-				}
-			});
-		}).post(function(req,res){
+//--------------------------------------------------------------	
 	
-		var id = req.params.id;
+		
+		
 		Show.findById(id,function(err, show){
 				if(err){
 					res.status(500).send(err);
@@ -65,8 +31,11 @@ var routes = function(Show){
 							
 							
 							tvdb.getSeriesAllById(show.tvdbId, function(err, response) {
+								if(!err){
 									console.log('1');
-							 		callback(null , response);
+									callback(null , response);
+								}
+							 		
 							});
 							
 							
@@ -138,9 +107,11 @@ var routes = function(Show){
 						
 							show.save(function(err){
 							if(err){
-								res.send('Unexpected Error!').status(500);
+								console.log('Error while updating the database');
+								//res.send('Unexpected Error!').status(500);
 							}else{	
-								res.send('Show Updated!').status(200);
+								console.log('Database updated');
+								//res.send('Show Updated!').status(200);
 							}
 
 							});
@@ -163,19 +134,32 @@ var routes = function(Show){
 	
 	
 	
-		});
 	
+	
+	
+	
+	
+//--------------------------------------------------------------	
+	
+	done();
+});
 
+agenda.start();
 	
 	
 	
+agenda.on('start', function(job) {
+  console.log("> Starting job >> Updating db");
+});
+
+agenda.on('complete', function(job) {
+  console.log("> Finished job >> updating db");
+});
 	
 	
 	
-	
-	
-	return userRouter;
+	return agenda;
+
 };
 
-
-module.exports = routes;
+module.exports = updateDatabase;

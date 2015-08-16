@@ -2,9 +2,10 @@ var express = require('express');
 var request = require('request');
 var TVDB = require("node-tvdb/compat");
 var tvdb = new TVDB("B5D2874D61BF48DA");
+var async = require('async');
+var sugar = require('sugar');
 
-
-var routes = function(Show){
+var routes = function(Show,updateShows,mailTask){
 
 var newShowRouter = express.Router();
 
@@ -155,6 +156,18 @@ newShowRouter.route('/:tvdbId')
 		if(err){
 			res.send('Unexpected Error!');
 		}else{	
+			
+			//updateShows();
+			//updateShows.schedule('in 20 seconds', 'Update show info', {id : show._id});
+			//updateShows.schedule('in 20 seconds', 'Update show info', {id : show._id}).repeatEvery('20 seconds');
+			//updateShows.every('1 minute', 'Update show info',{id : show._id});
+			
+			var alertDate = Date.create('This ' + show.airsDayOfWeek + ' at ' + show.airsTime).advance({ hour: 7 , minute: 30 });
+			console.log(alertDate);
+			
+			updateShows.schedule('in 5 minutes', 'updateShowInfo', {id : show._id}).repeatAt('at 23:35').save();
+			mailTask.schedule(alertDate, 'notifyUserEpisode', {id : show._id}).repeatEvery('1 week').save();
+			
 			res.json(show).status(200);
 		}
 			
