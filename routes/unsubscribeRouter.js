@@ -18,7 +18,9 @@ var routes = function(User,Show){
 				}
 				
 				user.save(function(err) {
+					if(err){
 				    console.log(err);
+					}
 				});
 			});
 
@@ -33,7 +35,9 @@ var routes = function(User,Show){
 				}
 				
 				show.save(function(err) {
+					if(err){
 				    console.log(err);
+					}
 				});
 
 			});

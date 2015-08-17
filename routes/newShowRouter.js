@@ -5,7 +5,7 @@ var tvdb = new TVDB("B5D2874D61BF48DA");
 var async = require('async');
 var sugar = require('sugar');
 
-var routes = function(Show,updateShows,mailTask){
+var routes = function(Show,updateShows,mailTask,newShowTask){
 
 var newShowRouter = express.Router();
 
@@ -168,6 +168,7 @@ newShowRouter.route('/:tvdbId')
 			//------------------------------
 			updateShows.schedule('in 10 minutes', 'updateShowInfo', {id : show._id}).repeatEvery('30 minutes').save();
 			mailTask.schedule(alertDate, 'notifyUserEpisode', {id : show._id, date : alertDate}).repeatEvery('1 week').save();
+			newShowTask.schedule('in 2 minutes', 'notifyUserShow', {tvdbId : show.tvdbId});
 			//------------------------------
 			//mailTask.schedule('in 20 seconds', 'notifyUserEpisode', {id : show._id , date : alertDate}).repeatEvery('1 minute').save();
 			res.json(show).status(200);

@@ -25,6 +25,7 @@ var ReqShow = require('./models/requestModel');
 
 
 var mailTask = require('./tasks/mailTask')(Show);
+var newShowTask = require('./tasks/newShowTask')(ReqShow);
 var updateShows = require('./tasks/updateShows')(Show);
 
 
@@ -33,7 +34,7 @@ var updateShows = require('./tasks/updateShows')(Show);
 var userRouter = require('./routes/userRouter')(User);
 var showRouter = require('./routes/showRouter')(Show);
 var infoRouter = require('./routes/infoRouter')(ReqShow);
-var newShowRouter = require('./routes/newShowRouter')(Show , updateShows , mailTask);
+var newShowRouter = require('./routes/newShowRouter')(Show , updateShows , mailTask , newShowTask);
 var subscribeRouter = require('./routes/subscribeRouter')(User,Show);
 var unsubscribeRouter = require('./routes/unsubscribeRouter')(User,Show);
 

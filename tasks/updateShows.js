@@ -12,7 +12,7 @@ agenda.define('updateShowInfo', function(job, done) {
 	var data = job.attrs.data;
 	var id = data.id;
   	console.log('Updating: '+id);
-	
+	console.log(new Date());
 //--------------------------------------------------------------	
 	
 		
