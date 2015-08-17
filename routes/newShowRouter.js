@@ -162,12 +162,14 @@ newShowRouter.route('/:tvdbId')
 			//updateShows.schedule('in 20 seconds', 'Update show info', {id : show._id}).repeatEvery('20 seconds');
 			//updateShows.every('1 minute', 'Update show info',{id : show._id});
 			
-			var alertDate = Date.create('This ' + show.airsDayOfWeek + ' at ' + show.airsTime).advance({ hour: 7 , minute: 30 });
-			console.log(alertDate);
+			var alertDate = Date.create('Next ' + show.airsDayOfWeek + ' at ' + show.airsTime).rewind({hour: 1});
 			
-			updateShows.schedule('in 5 minutes', 'updateShowInfo', {id : show._id}).repeatAt('at 23:35').save();
-			mailTask.schedule(alertDate, 'notifyUserEpisode', {id : show._id}).repeatEvery('1 week').save();
-			
+			//console.log('SCHEDULE DATE :'+alertDate);
+			//------------------------------
+			updateShows.schedule('in 10 minutes', 'updateShowInfo', {id : show._id}).repeatEvery('30 minutes').save();
+			mailTask.schedule(alertDate, 'notifyUserEpisode', {id : show._id, date : alertDate}).repeatEvery('1 week').save();
+			//------------------------------
+			//mailTask.schedule('in 20 seconds', 'notifyUserEpisode', {id : show._id , date : alertDate}).repeatEvery('1 minute').save();
 			res.json(show).status(200);
 		}
 			
