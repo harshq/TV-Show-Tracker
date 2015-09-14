@@ -9,6 +9,15 @@ var routes = function(ReqShow){
 var infoRouter = express.Router();
 
 	infoRouter.route('/')
+		.get(function(req,res){
+			ReqShow.find(function(err, data){
+				if(err){
+					res.status(500).send(err);
+				}else{
+					res.json(data).status(200);
+				}
+			});
+		})
 		.post(function(req,res){
 		
 			var userId = req.body.userId;

@@ -50,7 +50,7 @@
 		  
         <form ng-submit="register.newUser()" name="regForm" novalidate>
           <div class="form-group has-feedback">
-            <input type="text" class="form-control" ng-model="register.firstName" ng-model-options="{ updateOn: 'blur' }" name="fname" placeholder="First Name" required>
+            <input type="text" class="form-control" ng-model="register.firstName" ng-model-options="{ updateOn: 'blur' }" name="fname" placeholder="Name" required>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
 			<span ng-show="regForm.fname.$dirty && regForm.fname.$invalid" style="font-size: 12px; color: red;">
 			  		<span ng-show="regForm.fname.$error.required">* Required</span>
@@ -115,11 +115,21 @@
 			vm.newUser = function() {
 				
 			if(vm.password === vm.passRepeat){	
+				var names = vm.firstName.split(" ");
+				if(names.length > 0){
+					var firstName = names[0]; 
+					var lastName = names[names.length - 1];
+				}else{
+					var firstName = vm.firstName; 
+					var lastName = "";
+				}
+				
+				
 				var image = "images/user2-160x160.png";
-				var user = newUser.save({firstName: vm.firstName ,email: vm.email ,createdOn: Date.now() ,password: vm.password, image:image });
+				var user = newUser.save({firstName: firstName, lastName: lastName ,email: vm.email ,createdOn: Date.now() ,password: vm.password, image:image });
 
 				user.$promise.then(function(){
-					 $alert({title: "Success! ",content: "Welcome to RemindMe "+ vm.firstName + " !",placement: 'floater top right am-flip-x',duration: '3',type: "success",show: true});
+					 $alert({title: "Success! ",content: "Welcome to RemindMe "+ firstName + ". We are excited to have you! ",placement: 'floater top right am-flip-x',duration: '3',type: "success",show: true});
 				}, function(){
 					$alert({title: "Oops! ",content: "Looks like your email is already registerd! ",placement: 'floater top right am-flip-x',duration: '3',type: "danger",show: true});
 				});

@@ -39,6 +39,7 @@
 										</tr><tr>
 <td>
 	<div ng-hide="settings.edit">
+	<span class="text16" ng-if="home.user.genre.length == 0">No genres added!</span>
 	<span style="margin-right: 3px;" class="btn btn-xs btn-default text16" ng-repeat="genre in home.user.genre">{{genre}}</span>
 	</div>
 	<div ng-show="settings.edit">

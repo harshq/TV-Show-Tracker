@@ -1,4 +1,4 @@
-var app = angular.module('MyApp', ['mgcrea.ngStrap','ngAnimate','ngCookies', 'ngResource', 'ngMessages', 'ngRoute','ui.calendar','flow']);
+var app = angular.module('MyApp', ['mgcrea.ngStrap','ngAnimate','ngCookies', 'ngResource', 'ngMessages', 'ngRoute','ui.calendar','flow','chart.js']);
 
 app.config(['$routeProvider','$locationProvider','$compileProvider', function($routeProvider,$locationProvider,$compileProvider){
 
@@ -32,6 +32,16 @@ app.config(['$routeProvider','$locationProvider','$compileProvider', function($r
 	    controller: 'detailsCtrl',
 		controllerAs: 'detailCtrl'
 	  })
+	.when('/mainAdmin', {
+	    templateUrl: 'views/mainAdmin.html',
+	    controller: 'mainAdminCtrl',
+		controllerAs: 'AdminCtrl'
+	  })
+	.when('/addShow', {
+	    templateUrl: 'views/addShow.html',
+	    controller: 'addShowCtrl',
+		controllerAs: 'addShowCtrl'
+	  })
 	  .otherwise({
 	    redirectTo: '/'
 	  });
@@ -43,6 +53,8 @@ app.controller('homeController', function(Login, $window, $location,$rootScope,a
 	var vm = this;
 	vm.isLoading = false;
 	vm.user = {}; 
+	
+	
 		
 	vm.signIn = function(){
 		
@@ -54,6 +66,12 @@ app.controller('homeController', function(Login, $window, $location,$rootScope,a
 						if(vm.user){
 								User.loggedUser = vm.user;
 								alertService.alert('Hello '+vm.user.firstName+'!',' Good to see you again!','success');
+							
+							
+								if(vm.user.userType === 'admin'){
+									 $location.path('/mainAdmin');
+								}
+							
 						}else{
 								alertService.alert('Oops!',' Check your email and password again!','danger');
 						}

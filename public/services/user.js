@@ -19,4 +19,9 @@ angular.module('MyApp')
 		
 	};
 	
+	this.allUsers = function(){
+		
+		return $resource ('/users');
+	}
+	
 });

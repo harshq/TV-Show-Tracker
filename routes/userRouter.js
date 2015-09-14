@@ -29,7 +29,7 @@ var routes = function(User){
 				delete data._id;
 			}
 			var user = new User(data);
-
+			
 			user.save(function(err){
 				if(err){
 					res.status(500).send(err);

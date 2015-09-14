@@ -1,0 +1,183 @@
+<div class="container-fluid">
+      
+	
+			
+			<div class="box box-default">
+                <div class="box-header with-border">
+                  <h3 class="box-title">{{addShowCtrl.title}}</h3>
+				</div>
+				
+                 <div ng-hide="!!addShowCtrl.show" class="box-body">
+                    
+					<div class="form-group">
+                      <input type="text" class="form-control input-lg" id="showName" ng-model="addShowCtrl.searchText" placeholder="Tell us the show you need ...">
+						<button style="margin-top: 10px; background: #fcc21b; color:#2f2f2f; font-size: 16px; font-weight: 800;" class="btn btn-block btn-lg" ng-click="addShowCtrl.search(addShowCtrl.searchText)">Search</button>
+                    </div>
+					
+                    
+                  </div>
+				
+                <div ng-show="!!addShowCtrl.show" class="box-footer no-padding">
+					<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-4">
+							<img ng-hide="!addShowCtrl.show.poster" ng-src="{{addShowCtrl.show.poster}}" class="img-responsive center-block" alt="Responsive image">
+							<img ng-hide="!!addShowCtrl.show.poster" src="../images/poster-default.png" class="img-responsive center-block" alt="Responsive image">
+						</div>
+						<div class="col-md-8">
+							
+							
+							
+							
+							
+							
+		<table class="table table-hover table-condensed">
+                    <tbody>
+					
+					<tr>
+                      <td colspan="2">
+						  
+						<h1 style="font-weight: 800;">{{addShowCtrl.show.SeriesName}}<small> - {{addShowCtrl.show.year}}</small></h1>
+					<span style="margin-right: 5px;" ng-repeat="genre in addShowCtrl.show.genres | limitTo:4 " class="label label-success">{{genre}}</span>
+						  
+					  </td>
+						
+                    </tr>
+					<tr>
+						<td colspan="2"></td>
+					</tr>
+						
+					<tr>
+                      <td style="display: inline-block; background: url('images/2.png') no-repeat; background-position: 23px 5px; height: 40px; width:80px;"></td>
+						<td><p style="font-size: 16px;">First Aired on <span style="font-weight: 800;">{{addShowCtrl.show.FirstAired}}</span></p></td>
+                    </tr>
+					
+					<tr>
+                      <td style="display: inline-block; background: url('images/1.png') no-repeat; background-position: 23px 5px; height: 40px; width:80px;"></td>
+						<td><p>in <span style="font-weight: 800; font-size: 16px;">{{addShowCtrl.show.Network}}</span></p></td>
+                    </tr>
+						
+					<tr>
+                      <td style="display: inline-block; background: url('images/2.png') no-repeat; background-position: 23px 5px; height: 40px; width:80px;"></td>
+						<td><p style="font-size: 16px;">For <span style="font-weight: 800;">{{addShowCtrl.show.runtime}}</span> minutes</p></td>
+                    </tr>
+						
+					
+						
+                    <tr>
+                      <td style="display: inline-block; background: url('images/6.png') no-repeat; background-position: 23px 5px; height: 40px; width:80px;"></td>
+						<td><p style="font-size: 16px;"><span style="font-weight: 800;">{{addShowCtrl.show.status}}</span></p></td>
+                    </tr>
+					
+                    
+                    <tr>
+						<td><p style="font-weight: 800; font-size: 16px;">Overview</p></td>
+                      <td><p style="font-size: 16px;">{{addShowCtrl.show.Overview}}</p></td>
+                    </tr>
+						
+					<tr>
+						<td colspan="2"></td>
+                    </tr>
+						<tr>
+						
+                      <td colspan="2">
+						  <button ng-click="addShowCtrl.select(addShowCtrl.show.seriesid)" class="btn btn-block yellow-background text16 bold">Add this show</button>
+						  <button class="btn btn-default btn-block" ng-click="addShowCtrl.cancel()">Cancel</button></td>
+                    </tr>
+			</tbody>
+								
+		</table>
+			
+						</div>
+					</div>
+					</div>
+					
+					
+                </div>
+								<div ng-show="addShowCtrl.loading" class="overlay"><i class="fa fa-refresh fa-spin"></i></div>
+              </div>
+			
+	
+	
+	
+	
+	
+	
+	<div ng-show="!!addShowCtrl.requestedShows" class="box box-default no-padding">
+		<div class="box-header with-border">
+        	<h3 class="box-title">Requested By users</h3>
+		</div>
+		<div class="box-body">
+			<div class="container-fluid">
+				<div class="row">
+					
+<!--					-->
+					<div style="margin-bottom: 5px" class="col-sm-6 text-center" ng-repeat="show in addShowCtrl.requestedShows | filter: addShowCtrl.searchText | orderBy: +show.reqested.length ">
+						<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-6 col-lg-6">
+								<img ng-show="!!show.poster" ng-src="{{show.poster}}" class="img-responsive center-block" alt="Responsive image">
+								<img ng-hide="!!show.poster" src="../images/poster-default.png" class="img-responsive center-block" alt="Responsive image">
+							</div>
+							<div class="col-lg-6" >
+								
+					
+							<h3 class="bold">{{show.name}}<span class="small"> - {{show.firstAired | limitTo:4}}</span></h3>
+							<p><span style="margin-right: 5px;" ng-repeat="genre in show.genres | limitTo:3 " class="label label-success">{{genre}}</span></p>
+							<h4 class="bold" style="color: rgba(0,0,0,0.4); margin-bottom: 0px;">{{show.status}}</h4>
+							<h5 style="color: rgba(0,0,0,0.4); margin-top: 0px;">On {{show.network}} for {{show.runtime}} minutes</h5>
+							
+							<p>{{show.overview}}</p>
+							
+							
+							<button ng-click="addShowCtrl.select(show.tvdbId)" class="btn btn-block btn-default text16 bold">Add show ({{show.reqested.length}})</button>
+					
+								
+								
+							</div>
+						</div>
+						</div>
+					</div>
+					
+					
+	
+					
+					
+					
+					
+<!--					-->
+					
+					
+					
+					
+					
+					
+					
+					
+					
+				</div>
+			</div>
+		
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+</div>

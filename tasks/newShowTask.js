@@ -15,14 +15,16 @@ var mailTask = function(ReqShow){
 	
 		ReqShow.findOne({tvdbId : tvdbId }).populate('reqested').exec(function(err, reqShow){
 	
+	if(reqShow){
+
 		var emails = reqShow.reqested.map(function(user) {
 			if(user.notifications === 'true'){
 				return user.email;
 			}
 		}); 
-			
-		
-		
+
+
+		if(emails.length > 0){
 			//----------------------------------------------------------
 			
 				var transporter = nodemailer.createTransport({
@@ -51,8 +53,13 @@ var mailTask = function(ReqShow){
 			
 			
 		//----------------------------------------------------------
-		
+		}
 			
+		reqShow.remove();
+
+			
+	}
+		
 		
 		
 		});

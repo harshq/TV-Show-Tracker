@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="stylesheets/Admin.min.css">
     <link rel="stylesheet" href="stylesheets/skin-red.min.css">
 	  <link rel="stylesheet" href="stylesheets/angular-motion.min.css">
+	  <link rel="stylesheet" href="stylesheets/angular-chart.css">
       
 	 <link rel="stylesheet" href="stylesheets/fullcalendar.css">
     <link rel="stylesheet" href="stylesheets/style.css" />
@@ -88,44 +89,46 @@
 
             
 
-              <!-- Sidebar Menu -->
-              <ul class="sidebar-menu">
+              <!-- Sidebar User -->
+              <ul ng-show="home.user.userType === 'user'" class="sidebar-menu">
                 <li class="header">QUICK LINKS</li>
-                <!-- Optionally, you can add icons to the links -->
 
                 <li ng-class="{active: home.isActive('/') || home.isActive('/details') || home.isActive('/mainUser') }" data-match-route="/$"><a href="/mainUser"><i class="fa fa-home"></i> <span>Home</span></a></li>
                 <li ng-class="{active: home.isActive('/request')}" data-match-route="/request"><a href="/request"><i class="fa fa-folder"></i> <span>Request a show</span></a></li>
-                <li ng-class="{active: home.isActive('/calender')}" data-match-route="/calender"><a href="/calender"><i class="fa fa-calendar"></i> <span>Event Calender</span></a></li>
+                <li ng-class="{active: home.isActive('/calender')}" data-match-route="/calender"><a href="/calender"><i class="fa fa-calendar"></i> <span>Event Calendar</span></a></li>
                 <li ng-class="{active: home.isActive('/settings')}" data-match-route="/settings"><a href="/settings"><i class="fa fa-wrench"></i> <span>Account Settings</span></a></li>
                 <li><a href="javascript:void(0)" ng-click="home.logout()"><i class="fa fa-share"></i> <span>Log out</span></a></li>
 
 
               </ul><!-- /.sidebar-menu -->
+				
+				<!-- Sidebar Admin -->
+		      <ul ng-show="home.user.userType === 'admin'" class="sidebar-menu">
+                <li class="header">QUICK LINKS</li>
+
+                <li ng-class="{active: home.isActive('/mainAdmin')}" data-match-route="/mainAdmin"><a href="/mainAdmin"><i class="fa fa-bar-chart"></i> <span>Statistics</span></a></li>
+                <li ng-class="{active: home.isActive('/addShow')}" data-match-route="/addShow"><a href="/addShow"><i class="fa fa-plus"></i> <span>Add show</span></a></li>
+                <li ng-class="{active: home.isActive('/settings')}" data-match-route="/settings"><a href="/settings"><i class="fa fa-wrench"></i> <span>Account Settings</span></a></li>
+				 
+                <li><a href="javascript:void(0)" ng-click="home.logout()"><i class="fa fa-share"></i> <span>Log out</span></a></li>
+
+
+              </ul><!-- /.sidebar-menu -->
+				
+				
+				
+				
+				
+				
             </section>
             <!-- /.sidebar -->
-          </aside>
+   </aside>
 
     <div class="content-wrapper" style="min-height: calc(100vh - 51px);;">
-            <!-- Content Header (Page header) -->
-<!--
-            <section class="content-header">
-              <h1>
-                {{home.header}}
-                <small>{{home.description}}</small>
-              </h1>
-              <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-                <li class="active">Here</li>
-              </ol>
-            </section>
--->
-
-            <!-- Main content -->
-		
 		
             <section ng-view class="content"></section>
 		
-          </div>
+    </div>
 
     <footer class="main-footer">
             <!-- To the right -->
@@ -134,77 +137,10 @@
             </div>
             <!-- Default to the left -->
 		  <span style="font-size:12px;">Copyright &copy; 2015 RemindMe! All rights reserved. </span>
-          </footer>
+     </footer>
 
-    <aside class="control-sidebar control-sidebar-dark">
-            <!-- Create the tabs -->
-            <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-              <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-              <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-            </ul>
-            <!-- Tab panes -->
-            <div class="tab-content">
-              <!-- Home tab content -->
-              <div class="tab-pane active" id="control-sidebar-home-tab">
-                <h3 class="control-sidebar-heading">Recent Activity</h3>
-                <ul class="control-sidebar-menu">
-                  <li>
-                    <a href="javascript::;">
-                      <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-                      <div class="menu-info">
-                        <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-                        <p>Will be 23 on April 24th</p>
-                      </div>
-                    </a>
-                  </li>
-                </ul><!-- /.control-sidebar-menu -->
-
-                <h3 class="control-sidebar-heading">Tasks Progress</h3>
-                <ul class="control-sidebar-menu">
-                  <li>
-                    <a href="javascript::;">
-                      <h4 class="control-sidebar-subheading">
-                        Custom Template Design
-                        <span class="label label-danger pull-right">70%</span>
-                      </h4>
-                      <div class="progress progress-xxs">
-                        <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                      </div>
-                    </a>
-                  </li>
-                </ul><!-- /.control-sidebar-menu -->
-
-              </div><!-- /.tab-pane -->
-              <!-- Stats tab content -->
-              <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
-              <!-- Settings tab content -->
-              <div class="tab-pane" id="control-sidebar-settings-tab">
-                <form method="post">
-                  <h3 class="control-sidebar-heading">General Settings</h3>
-                  <div class="form-group">
-                    <label class="control-sidebar-subheading">
-                      Report panel usage
-                      <input type="checkbox" class="pull-right" checked />
-                    </label>
-                    <p>
-                      Some information about this general settings option
-                    </p>
-                  </div><!-- /.form-group -->
-                </form>
-              </div><!-- /.tab-pane -->
-            </div>
-          </aside>
-
-    <div class="control-sidebar-bg"></div>
    
-    
-    
-    
-    
-    
-    
-    
-    
+   
     
     
   
@@ -288,6 +224,9 @@
     <script src="vendor/angular-cookies.min.js"></script>
 	<script src="vendor/ng-flow-standalone.min.js"></script>
 	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+	<script src="vendor/angular-chart.min.js"></script>
+	
    
     <script src="app.js"></script>
 	
@@ -296,6 +235,9 @@
 	<script src="controllers/requestCtrl.js"></script>
 	<script src="controllers/calenderCtrl.js"></script>
 	<script src="controllers/settingsCtrl.js"></script>
+	
+	<script src="controllers/addShowCtrl.js"></script>
+	<script src="controllers/mainAdminCtrl.js"></script>
 	
 	
     <script src="services/show.js"></script>
@@ -306,6 +248,7 @@
 	<script src="services/request.js"></script>
 	<script src="services/events.js"></script>
 	<script src="services/user.js"></script>
+	<script src="services/newShow.js"></script>
 	
 	<script src="directives/enterKeyPress.js"></script>
 	

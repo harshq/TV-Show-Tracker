@@ -24,7 +24,7 @@ var mailTask = function(Show){
 		}); 
 			
 		var upcomingEpisode = show.episodes.filter(function(episode) {
-		  return new Date(episode.firstAired) > new Date();
+		  return new Date(episode.firstAired) >= new Date();
 		})[0];
 		
 		if(new Date(upcomingEpisode.firstAired).setHours(0,0,0,0) == today.setHours(0,0,0,0) ){
