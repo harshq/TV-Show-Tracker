@@ -6,11 +6,12 @@ AngularJS, NodeJS and mongoDB based web application to track TV show episodes
 <br/>
 FEATURES: <br/>
 1. Email notifications<br/>
-2. TV show info<br/>
+2. TV Show & episode info<br/>
 3. Download torrent links<br/>
 4. Personalized event calendar <br/>
 5. TV show suggestions<br/>
 6. Request new shows<br/>
+7. Edit user info
 <br/>
 <br/>
 TODO LIST: <br/>
