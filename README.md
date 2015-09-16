@@ -2,8 +2,9 @@
 AngularJS, NodeJS and mongoDB based web application to track TV show episodes
 
 “Remind Me!” is a TV show tracking service which allows users to subscribe and get notified whenever a new episode of their favorite TV Show is about to be aired. Uses TVDB and PopcornTV APIs.
-<br/>
-<br/>
+<br/><br/>
+<a href="http://safe-hollows-3177.herokuapp.com/"> DEMO </a>
+<br/><br/>
 FEATURES: <br/>
 1. Email notifications<br/>
 2. TV Show & episode info<br/>
