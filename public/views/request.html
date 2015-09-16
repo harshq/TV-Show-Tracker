@@ -21,7 +21,7 @@
 					<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-4">
-							<img ng-hide="!request.show.poster" ng-src="{{request.show.poster}}" class="img-responsive center-block" alt="Responsive image">
+							<img ng-hide="!request.show.poster" ng-Link-Fix="../images/poster-default.png" ng-src="{{request.show.poster | thumbnail }}" class="img-responsive center-block" alt="Responsive image">
 							<img ng-hide="!!request.show.poster" src="../images/poster-default.png" class="img-responsive center-block" alt="Responsive image">
 						</div>
 						<div class="col-md-8">
@@ -116,7 +116,7 @@
 	<div class="bottom-margin10 col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="show in request.shuffledShows | filter: request.randomGenre() | limitTo: 4">
 			<a href="/details" ng-click="request.selected(show)">
 			<div class="displaybox-home" style="border: 1px solid rgba(0,0,0,0.1)">
-				<img ng-src="{{show.fanart}}" class="img-responsive center-block" alt="Responsive image">
+				<img ng-src="{{show.fanart | thumbnail }}" class="img-responsive center-block" alt="Responsive image">
 				<p style=" padding-bottom:0px; margin-bottom:0px;" class="top-margin10 text-center bold text16">{{show.name}}</p>
 				<p style="padding:0px; margin:0px;" class="text-center text12">{{show.subscribers.length}} Subscribers</p>
 				

@@ -6,7 +6,7 @@
 				
 		<div class="box box-default no-padding">
 			<div class="box-header">
-				<img ng-src="{{detailCtrl.selectedShow.poster}}" class="img-responsive center-block" alt="Responsive image">
+				<img ng-src="{{detailCtrl.selectedShow.poster | thumbnail }}" class="img-responsive center-block" alt="Responsive image">
 				
 				<button ng-click="detailCtrl.subscribe(detailCtrl.selectedShow._id,detailCtrl.selectedShow.name, home.user._id, home.user.subscribed)" ng-class="{'disabled' : detailCtrl.selectedShow.status === 'Ended'}" ng-if="!detailCtrl.isSubscribed(detailCtrl.selectedShow._id, home.user.subscribed)" type="button" style="margin-top: 5px; font-size: 16px; font-weight: 800; background: #fcc21b; color:#2f2f2f;" class="btn btn-md btn-block"><span ng-hide="detailCtrl.selectedShow.status === 'Ended'">Subscribe</span><span ng-show="detailCtrl.selectedShow.status === 'Ended'">Ended</span></button>
 				

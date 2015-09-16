@@ -18,7 +18,7 @@
 				
 				<div ng-if="cal.isVisible" class="col-md-3">
 					<div ng-repeat="event in cal.events | filter: {_id : cal.selectedId}">
-						<div style="padding:2px; border: 1px solid rgba(0,0,0,0.1);"><img ng-src="{{event.poster}}" class="img-responsive center-block" alt="Responsive image"></div>
+						<div style="padding:2px; border: 1px solid rgba(0,0,0,0.1);"><img ng-src="{{event.poster | thumbnail }}" class="img-responsive center-block" alt="Responsive image"></div>
 						<div class="text-center" style="padding-left:2px; padding-right: 2px;">
 							<h3 style="font-weight: 800">{{event.title}}</h3>
 							<h4 style="color: rgba(0,0,0,0.4);font-weight: 800; margin-bottom: 0px;">{{event.episodeName === "TBA" ? "To Be Announced" : event.episodeName}}</h4>
