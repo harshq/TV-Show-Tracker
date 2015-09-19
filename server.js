@@ -47,12 +47,15 @@ app.use('/subscribe', subscribeRouter);
 app.use('/unsubscribe', unsubscribeRouter);
 
 
-// app.get('/', function(req,res){
-// 	res.send('Server is up and running!');
-// });
+app.get('/', function(req,res){
+	res.send('Server is up and running!').status(200);
+});
 
 
 
 app.listen(port, function(){
 	console.log('App is listening on port :'+port);
 });
+
+
+module.exports = app;
