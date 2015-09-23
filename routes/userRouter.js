@@ -161,6 +161,7 @@ var routes = function(User){
 		.post(function(req,res){
 			var data = req.body;
 			if(data._id){
+
 				delete data._id;
 			}
 
@@ -168,9 +169,16 @@ var routes = function(User){
 				req.user[i] = data[i];
 			}
 
+			// console.log('-------------REQ.BODY----------------');
+			// console.log(req.body);
+			// console.log('-------------REQ.USER----------------');
+			// console.log(req.user);
+
 			req.user.save(function(err){
 				if(err){
+					//console.log(err);
 					res.status(500).send(err);
+
 				}else{
 					res.status(201).json(req.user);
 				}
@@ -194,7 +202,4 @@ var routes = function(User){
 
 
 module.exports = routes;
-
-
-
 

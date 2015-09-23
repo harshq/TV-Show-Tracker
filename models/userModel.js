@@ -13,7 +13,7 @@ var userModel = new Schema({
 	subscribed:[{type: mongoose.Schema.Types.ObjectId, ref: 'shows'}],
 	image:{type: String, default: 'images/user2-160x160.png'},
 	notifications:{type: String, default: 'true'}
-});
+},{ versionKey: false });
 
 
 

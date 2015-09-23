@@ -10,9 +10,9 @@ var updateDatabase = function(Show){
 
 agenda.define('updateShowInfo', function(job, done) {
 	var data = job.attrs.data;
-	var id = data.id;
-  	console.log('Updating: '+id);
-	console.log(new Date());
+	var name = data.name;
+  	//console.log('Updating: '+id);
+	//console.log(new Date());
 //--------------------------------------------------------------	
 	
 		
@@ -25,7 +25,7 @@ agenda.define('updateShowInfo', function(job, done) {
 					
 					
 					
-					console.log('0');
+					//console.log('0');
 					async.waterfall([
 						function(callback) {
 							
@@ -42,7 +42,7 @@ agenda.define('updateShowInfo', function(job, done) {
 							//callback();
 						},
 						function(tvdbres , callback) {
-						  	console.log('2');
+						  	//console.log('2');
 							
 							
 							
@@ -57,7 +57,7 @@ agenda.define('updateShowInfo', function(job, done) {
 							
 						},
 						function(tvdbres, torres , callback) {
-							console.log('3');
+							//console.log('3');
 							show.episodes = [];
 							
 							tvdbres.Episodes.forEach(function(element, index , array){
@@ -78,7 +78,7 @@ agenda.define('updateShowInfo', function(job, done) {
 							
 						},
 						function(torres ,callback) {
-							console.log('4');
+							//console.log('4');
 							
 							
 							torres.episodes.forEach(function(element, index, array){
@@ -111,6 +111,7 @@ agenda.define('updateShowInfo', function(job, done) {
 								//res.send('Unexpected Error!').status(500);
 							}else{	
 								console.log('Database updated');
+								console.log(name+" Updated!");
 								//res.send('Show Updated!').status(200);
 							}
 
@@ -149,14 +150,13 @@ agenda.start();
 	
 	
 agenda.on('start', function(job) {
-  console.log("> Starting job >> Updating db");
-});
+var data = job.attrs.data;
+var name = data.name;
 
-agenda.on('complete', function(job) {
-  console.log("> Finished job >> updating db");
+   
+  console.log("Updating "+ name +" "+ new Date());
 });
-	
-	
+		
 	
 	return agenda;
 

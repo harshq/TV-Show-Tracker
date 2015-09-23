@@ -178,7 +178,7 @@ newShowRouter.route('/:tvdbId')
 			
 			//console.log('SCHEDULE DATE :'+alertDate);
 			//------------------------------
-			updateShows.schedule('in 5 minutes', 'updateShowInfo', {id : show._id}).repeatEvery('30 minutes').save();
+			updateShows.schedule('in 5 minutes', 'updateShowInfo', {id : show._id , name : show.name }).repeatEvery('30 minutes').save();
 			mailTask.schedule(alertDate, 'notifyUserEpisode', {id : show._id, date : alertDate}).repeatEvery('1 week').save();
 			newShowTask.schedule('in 2 seconds', 'notifyUserShow', {tvdbId : show.tvdbId});
 			//------------------------------
