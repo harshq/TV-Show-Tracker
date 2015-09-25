@@ -21,8 +21,8 @@
 					<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-4">
-							<img ng-if="!request.show.poster" ng-Link-Fix="../images/poster-default.png" ng-src="{{request.show.poster | thumbnail }}" class="img-responsive center-block" alt="Responsive image">
-							<img ng-if="!!request.show.poster" src="../images/poster-default.png" class="img-responsive center-block" alt="Responsive image">
+							<img ng-hide="!request.show.poster" ng-Link-Fix="../images/poster-default.png" ng-src="{{request.show.poster | thumbnail }}" class="img-responsive center-block" alt="Responsive image">
+							<img ng-hide="!!request.show.poster" src="../images/poster-default.png" class="img-responsive center-block" alt="Responsive image">
 						</div>
 						<div class="col-md-8">
 							
